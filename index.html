@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Calendario</title>
+  <meta name="theme-color" content="#f4f5f7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f1419" media="(prefers-color-scheme: dark)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Calendario">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="cabecera">
+    <h1 id="titulo">Hoy</h1>
+    <button type="button" class="boton-icono" id="boton-ajustes" aria-label="Ajustes">
+      <svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M19.4 13a7.6 7.6 0 0 0 0-2l2.1-1.6-2-3.4-2.5 1a7.4 7.4 0 0 0-1.7-1L15 3.3h-4l-.4 2.7a7.4 7.4 0 0 0-1.7 1l-2.5-1-2 3.4L6.6 11a7.6 7.6 0 0 0 0 2l-2.2 1.6 2 3.4 2.5-1a7.4 7.4 0 0 0 1.7 1l.4 2.7h4l.4-2.7a7.4 7.4 0 0 0 1.7-1l2.5 1 2-3.4zM13 15.5A3.5 3.5 0 1 1 13 8.5a3.5 3.5 0 0 1 0 7z" transform="translate(-1 0)"/></svg>
+    </button>
+  </header>
+
+  <main id="contenido">
+    <section id="pantalla-hoy" class="pantalla" data-titulo="Hoy">
+      <p class="fecha-hoy" id="fecha-hoy"></p>
+      <div class="vacio">
+        <p class="vacio-titulo">Aún no hay nada para hoy</p>
+        <p class="vacio-texto">Cuando configures tu semana tipo, aquí verás lo que te toca cada día, ordenado por hora.</p>
+      </div>
+    </section>
+
+    <section id="pantalla-semana" class="pantalla" data-titulo="Semana" hidden>
+      <div class="vacio">
+        <p class="vacio-titulo">Vista de semana</p>
+        <p class="vacio-texto">Se construirá en un paso posterior.</p>
+      </div>
+    </section>
+
+    <section id="pantalla-mes" class="pantalla" data-titulo="Mes" hidden>
+      <div class="vacio">
+        <p class="vacio-titulo">Vista de mes</p>
+        <p class="vacio-texto">Se construirá en un paso posterior.</p>
+      </div>
+    </section>
+
+    <section id="pantalla-mi-semana" class="pantalla" data-titulo="Mi semana" hidden>
+      <div class="vacio">
+        <p class="vacio-titulo">Mi semana tipo</p>
+        <p class="vacio-texto">Aquí configurarás tus bloques fijos. Se construirá en un paso posterior.</p>
+      </div>
+    </section>
+
+    <section id="pantalla-ajustes" class="pantalla" data-titulo="Ajustes" hidden>
+      <div class="tarjeta">
+        <p class="fila"><span>Versión</span><span id="version" class="dato"></span></p>
+        <p class="fila"><span>Conexión</span><span id="estado-conexion" class="dato"></span></p>
+        <p class="fila"><span>Modo sin conexión</span><span id="estado-offline" class="dato"></span></p>
+      </div>
+    </section>
+  </main>
+
+  <nav class="barra-inferior" aria-label="Secciones">
+    <a href="#hoy" class="pestana" data-pantalla="hoy">
+      <svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <span>Hoy</span>
+    </a>
+    <a href="#semana" class="pestana" data-pantalla="semana">
+      <svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><rect x="3" y="4" width="18" height="17" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 9h18M8 13v4M12 13v4M16 13v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <span>Semana</span>
+    </a>
+    <a href="#mes" class="pestana" data-pantalla="mes">
+      <svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><rect x="3" y="4" width="18" height="17" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 9h18" stroke="currentColor" stroke-width="2"/><g fill="currentColor"><circle cx="8" cy="13" r="1.3"/><circle cx="12" cy="13" r="1.3"/><circle cx="16" cy="13" r="1.3"/><circle cx="8" cy="17" r="1.3"/><circle cx="12" cy="17" r="1.3"/><circle cx="16" cy="17" r="1.3"/></g></svg>
+      <span>Mes</span>
+    </a>
+    <a href="#mi-semana" class="pestana" data-pantalla="mi-semana">
+      <svg aria-hidden="true" viewBox="0 0 24 24" width="24" height="24"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <span>Mi semana</span>
+    </a>
+  </nav>
+</body>
+</html>
