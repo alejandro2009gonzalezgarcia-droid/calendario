@@ -1,6 +1,6 @@
 "use strict";
 
-const VERSION = "0.2.0";
+const VERSION = "0.3.0";
 const PANTALLAS = ["hoy", "semana", "mes", "mi-semana", "ajustes"];
 
 const formatoFecha = new Intl.DateTimeFormat("es-ES", {
@@ -57,6 +57,9 @@ function mostrarPantalla() {
   }
   if (actual === "ajustes") {
     pintarAjustes();
+  }
+  if (actual === "mi-semana" && datosListos) {
+    pintarMiSemana();
   }
   window.scrollTo(0, 0);
 }
@@ -297,8 +300,12 @@ async function iniciar() {
     navigator.storage.persist().catch(() => {});
   }
 
+  prepararMiSemana();
   if (pantallaActual() === "ajustes") {
     pintarAjustes();
+  }
+  if (pantallaActual() === "mi-semana") {
+    pintarMiSemana();
   }
 }
 

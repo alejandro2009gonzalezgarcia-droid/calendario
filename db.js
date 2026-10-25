@@ -77,6 +77,22 @@ const BD = {
     return finTransaccion(tx);
   },
 
+  async guardarVarios(almacen, objetos) {
+    const tx = await transaccion([almacen], "readwrite");
+    const tienda = tx.objectStore(almacen);
+    objetos.forEach((objeto) => tienda.put(objeto));
+    return finTransaccion(tx);
+  },
+
+  // Borra unos registros y guarda otros en una sola operación: o se hace todo o nada.
+  async sustituirVarios(almacen, idsBorrar, objetos) {
+    const tx = await transaccion([almacen], "readwrite");
+    const tienda = tx.objectStore(almacen);
+    idsBorrar.forEach((id) => tienda.delete(id));
+    objetos.forEach((objeto) => tienda.put(objeto));
+    return finTransaccion(tx);
+  },
+
   async borrar(almacen, id) {
     const tx = await transaccion([almacen], "readwrite");
     tx.objectStore(almacen).delete(id);

@@ -26,6 +26,10 @@
   box-sizing: border-box;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 html {
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -279,7 +283,7 @@ main {
   font-size: 19px;
 }
 
-.dialogo p {
+#dialogo-texto {
   margin: 0 0 20px;
   color: var(--texto-suave);
   font-size: 15px;
@@ -311,6 +315,244 @@ main {
 .boton.peligro {
   background: #d93a2b;
   color: #ffffff;
+}
+
+/* Mi semana */
+.selector-dias {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.chip-dia {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--superficie);
+  color: var(--texto);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.chip-dia[aria-pressed="true"] {
+  background: var(--acento);
+  color: var(--fondo);
+}
+
+.marca-dia {
+  width: 5px;
+  height: 5px;
+  margin-top: 3px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.7;
+}
+
+.marca-dia.oculta {
+  visibility: hidden;
+}
+
+.titulo-dia {
+  margin: 20px 4px 10px;
+  font-size: 20px;
+}
+
+.bloque {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 56px;
+  padding: 10px 16px;
+  border: 0;
+  border-bottom: 1px solid var(--borde);
+  background: transparent;
+  color: var(--texto);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.lista li:last-child .bloque {
+  border-bottom: 0;
+}
+
+.bloque:active {
+  background: var(--borde);
+}
+
+.bloque-color {
+  flex: none;
+  align-self: stretch;
+  width: 4px;
+  border-radius: 2px;
+}
+
+.bloque-horas {
+  flex: none;
+  min-width: 96px;
+  color: var(--texto-suave);
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+}
+
+.bloque-textos {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.bloque-titulo {
+  overflow-wrap: anywhere;
+  font-weight: 600;
+}
+
+.bloque-categoria {
+  color: var(--texto-suave);
+  font-size: 13px;
+}
+
+.acciones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.acciones .boton {
+  min-height: 48px;
+}
+
+.boton:disabled {
+  opacity: 0.45;
+}
+
+/* Formularios */
+.hoja {
+  width: min(420px, calc(100% - 24px));
+  max-height: calc(100% - 48px);
+  overflow-y: auto;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  margin: 0 0 14px;
+  padding: 0;
+  border: 0;
+}
+
+.campo > span,
+.campo legend {
+  padding: 0;
+  color: var(--texto-suave);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.campo legend {
+  margin-bottom: 6px;
+}
+
+.campo input,
+.campo select {
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  background: var(--fondo);
+  color: var(--texto);
+  font: inherit;
+  font-size: 17px;
+}
+
+.campos-fila {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.dias-check {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.casilla-dia {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  border-radius: 10px;
+  background: var(--fondo);
+  border: 1px solid var(--borde);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.casilla-dia input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.casilla-dia:has(input:checked) {
+  background: var(--acento);
+  border-color: var(--acento);
+  color: var(--fondo);
+}
+
+.casilla-dia:has(input:focus-visible) {
+  outline: 2px solid var(--acento);
+  outline-offset: 2px;
+}
+
+.error {
+  min-height: 1em;
+  margin: 0 0 12px;
+  color: #d93a2b;
+  font-size: 14px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .error {
+    color: #ff6b5e;
+  }
+}
+
+.error:empty {
+  display: none;
+}
+
+.nota-dialogo {
+  margin: 8px 0 16px;
+  color: var(--texto-suave);
+  font-size: 14px;
+}
+
+.boton-texto {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  margin-top: 12px;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 /* Aviso breve */

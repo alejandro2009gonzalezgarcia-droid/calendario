@@ -15,6 +15,7 @@
   <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
   <link rel="stylesheet" href="styles.css">
   <script src="db.js" defer></script>
+  <script src="mi-semana.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
@@ -49,9 +50,16 @@
     </section>
 
     <section id="pantalla-mi-semana" class="pantalla" data-titulo="Mi semana" hidden>
-      <div class="vacio">
-        <p class="vacio-titulo">Mi semana tipo</p>
-        <p class="vacio-texto">Aquí configurarás tus bloques fijos. Se construirá en un paso posterior.</p>
+      <div class="selector-dias" id="selector-dias" role="group" aria-label="Día de la semana"></div>
+      <h2 class="titulo-dia" id="titulo-dia"></h2>
+      <ul class="tarjeta lista" id="lista-bloques" hidden></ul>
+      <div class="vacio" id="bloques-vacio">
+        <p class="vacio-titulo">Sin bloques fijos</p>
+        <p class="vacio-texto">Añade tus clases, rutinas y compromisos de este día. Se repetirán cada semana.</p>
+      </div>
+      <div class="acciones">
+        <button type="button" class="boton" id="boton-nuevo-bloque">Añadir bloque</button>
+        <button type="button" class="boton secundario" id="boton-copiar-dia">Copiar este día a…</button>
       </div>
     </section>
 
@@ -89,6 +97,53 @@
       <div class="dialogo-botones">
         <button type="submit" value="cancelar" class="boton secundario">Cancelar</button>
         <button type="submit" value="aceptar" class="boton" id="dialogo-aceptar"></button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="dialogo-bloque" class="dialogo hoja" aria-labelledby="bloque-titulo-dialogo">
+    <form id="form-bloque" novalidate>
+      <h2 id="bloque-titulo-dialogo">Nuevo bloque</h2>
+      <label class="campo">
+        <span>Título</span>
+        <input name="titulo" type="text" maxlength="60" autocomplete="off" placeholder="Por ejemplo, Matemáticas…">
+      </label>
+      <label class="campo">
+        <span>Categoría</span>
+        <select name="categoria"></select>
+      </label>
+      <div class="campos-fila">
+        <label class="campo">
+          <span>Empieza</span>
+          <input name="inicio" type="time">
+        </label>
+        <label class="campo">
+          <span>Termina</span>
+          <input name="fin" type="time">
+        </label>
+      </div>
+      <fieldset class="campo" id="campo-dias">
+        <legend>Días</legend>
+        <div class="dias-check" id="bloque-dias"></div>
+      </fieldset>
+      <p class="error" id="error-bloque" role="alert"></p>
+      <div class="dialogo-botones">
+        <button type="button" class="boton secundario" id="bloque-cancelar">Cancelar</button>
+        <button type="submit" class="boton">Guardar</button>
+      </div>
+      <button type="button" class="boton-texto peligro" id="bloque-eliminar" hidden>Eliminar bloque</button>
+    </form>
+  </dialog>
+
+  <dialog id="dialogo-copiar" class="dialogo" aria-labelledby="copiar-titulo">
+    <form id="form-copiar" novalidate>
+      <h2 id="copiar-titulo"></h2>
+      <div class="dias-check" id="copiar-dias"></div>
+      <p class="nota-dialogo">Los bloques que ya tengan esos días se sustituirán por los de este día.</p>
+      <p class="error" id="error-copiar" role="alert"></p>
+      <div class="dialogo-botones">
+        <button type="button" class="boton secundario" id="copiar-cancelar">Cancelar</button>
+        <button type="submit" class="boton">Copiar</button>
       </div>
     </form>
   </dialog>
