@@ -1,12 +1,13 @@
 "use strict";
 
 // Cambia este número cada vez que subas archivos nuevos.
-const CACHE = "calendario-v1";
+const CACHE = "calendario-v2";
 
 const ARCHIVOS = [
   "./",
   "index.html",
   "styles.css",
+  "db.js",
   "app.js",
   "manifest.webmanifest",
   "icons/apple-touch-icon.png",

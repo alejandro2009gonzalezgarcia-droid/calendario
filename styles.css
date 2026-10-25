@@ -182,6 +182,165 @@ main {
   opacity: 0.6;
 }
 
+/* Ajustes */
+.titulo-grupo {
+  margin: 24px 4px 8px;
+  color: var(--texto-suave);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.titulo-grupo:first-child {
+  margin-top: 4px;
+}
+
+.lista {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.punto {
+  flex: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+
+.fila-categoria {
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.boton-fila {
+  width: 100%;
+  min-height: 48px;
+  border: 0;
+  border-bottom: 1px solid var(--borde);
+  background: transparent;
+  color: var(--acento);
+  font: inherit;
+  text-align: left;
+  justify-content: flex-start;
+  cursor: pointer;
+}
+
+.boton-fila:last-child {
+  border-bottom: 0;
+}
+
+.boton-fila:active {
+  background: var(--borde);
+}
+
+.boton-fila:disabled {
+  opacity: 0.5;
+}
+
+.peligro {
+  color: #d93a2b;
+}
+
+@media (prefers-color-scheme: dark) {
+  .peligro {
+    color: #ff6b5e;
+  }
+}
+
+.separada {
+  margin-top: 24px;
+}
+
+.nota {
+  margin: 8px 4px 0;
+  color: var(--texto-suave);
+  font-size: 13px;
+}
+
+/* Diálogo de confirmación */
+.dialogo {
+  width: min(320px, calc(100% - 32px));
+  padding: 20px;
+  border: 0;
+  border-radius: 16px;
+  background: var(--superficie);
+  color: var(--texto);
+  overscroll-behavior: contain;
+}
+
+.dialogo::backdrop {
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.dialogo h2 {
+  margin: 0 0 8px;
+  font-size: 19px;
+}
+
+.dialogo p {
+  margin: 0 0 20px;
+  color: var(--texto-suave);
+  font-size: 15px;
+}
+
+.dialogo-botones {
+  display: flex;
+  gap: 10px;
+}
+
+.boton {
+  flex: 1;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--acento);
+  color: var(--fondo);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.boton.secundario {
+  background: var(--borde);
+  color: var(--texto);
+}
+
+.boton.peligro {
+  background: #d93a2b;
+  color: #ffffff;
+}
+
+/* Aviso breve */
+.aviso {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: calc(var(--alto-barra) + env(safe-area-inset-bottom) + 12px);
+  z-index: 20;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: var(--texto);
+  color: var(--fondo);
+  font-size: 15px;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.aviso.visible {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aviso {
+    transition: none;
+  }
+}
+
 :focus-visible {
   outline: 2px solid var(--acento);
   outline-offset: 2px;

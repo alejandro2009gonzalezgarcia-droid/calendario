@@ -14,6 +14,7 @@
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
   <link rel="stylesheet" href="styles.css">
+  <script src="db.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
@@ -55,13 +56,44 @@
     </section>
 
     <section id="pantalla-ajustes" class="pantalla" data-titulo="Ajustes" hidden>
+      <h2 class="titulo-grupo">Categorías</h2>
+      <ul class="tarjeta lista" id="lista-categorias"></ul>
+
+      <h2 class="titulo-grupo">Copia de seguridad</h2>
+      <div class="tarjeta">
+        <p class="fila"><span>Última copia</span><span id="ultima-copia" class="dato"></span></p>
+        <button type="button" class="fila boton-fila" id="boton-exportar">Exportar copia</button>
+        <button type="button" class="fila boton-fila" id="boton-importar">Importar copia</button>
+      </div>
+      <p class="nota">Si borras la app de la pantalla de inicio, se borran sus datos. Exporta una copia de vez en cuando y guárdala en Archivos o iCloud Drive.</p>
+      <input type="file" id="archivo-importar" hidden>
+
+      <h2 class="titulo-grupo">Información</h2>
       <div class="tarjeta">
         <p class="fila"><span>Versión</span><span id="version" class="dato"></span></p>
         <p class="fila"><span>Conexión</span><span id="estado-conexion" class="dato"></span></p>
         <p class="fila"><span>Modo sin conexión</span><span id="estado-offline" class="dato"></span></p>
+        <p class="fila"><span>Almacenamiento protegido</span><span id="estado-persistente" class="dato"></span></p>
+      </div>
+
+      <div class="tarjeta separada">
+        <button type="button" class="fila boton-fila peligro" id="boton-borrar">Borrar todos los datos</button>
       </div>
     </section>
   </main>
+
+  <dialog id="dialogo" class="dialogo" aria-labelledby="dialogo-titulo">
+    <form method="dialog">
+      <h2 id="dialogo-titulo"></h2>
+      <p id="dialogo-texto"></p>
+      <div class="dialogo-botones">
+        <button type="submit" value="cancelar" class="boton secundario">Cancelar</button>
+        <button type="submit" value="aceptar" class="boton" id="dialogo-aceptar"></button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="aviso" class="aviso" role="status" aria-live="polite"></div>
 
   <nav class="barra-inferior" aria-label="Secciones">
     <a href="#hoy" class="pestana" data-pantalla="hoy">
